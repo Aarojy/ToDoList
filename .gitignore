@@ -15,3 +15,8 @@ build/
 # Environment variables
 .env
 .env.local
+
+.idea/
+**/ .idea/
+backend/todo.db
+*.db
