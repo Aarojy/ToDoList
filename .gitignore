@@ -1,0 +1,17 @@
+# Python ignores
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+
+# JavaScript ignores
+node_modules/
+.pnp
+.pnp.js
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
