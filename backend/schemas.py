@@ -1,16 +1,17 @@
-from pydantic import BaseModel
+from typing import Annotated
+
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UserCreate(BaseModel):
-    username: str
-    password: str
+    username: Annotated[str, Field(min_length=1, strip_whitespace=True)]
+    password: Annotated[str, Field(min_length=1)]
 
 class UserResponse(BaseModel):
     id: int
     username: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class Token(BaseModel):
     access_token: str
@@ -25,5 +26,4 @@ class ToDoItemResponse(BaseModel):
     completed: bool
     owner_id: int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

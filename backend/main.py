@@ -62,9 +62,9 @@ def read_todos(db: Session = Depends(get_db), current_user: models.User = Depend
     return db.query(models.ToDoItem).filter(models.ToDoItem.owner_id == current_user.id).all()
 
 @app.put("/todos/{id}", response_model=ToDoItemResponse)
-def toggle_todo(todo_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+def toggle_todo(id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     db_todo = (
-        db.query(models.ToDoItem).filter(models.ToDoItem.id == todo_id, models.ToDoItem.owner_id == current_user.id).first()
+        db.query(models.ToDoItem).filter(models.ToDoItem.id == id, models.ToDoItem.owner_id == current_user.id).first()
     )
 
     if not db_todo:
@@ -76,8 +76,8 @@ def toggle_todo(todo_id: int, db: Session = Depends(get_db), current_user: model
     return db_todo
 
 @app.delete("/todos/{id}")
-def delete_todo(todo_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
-    db_todo = db.query(models.ToDoItem).filter(models.ToDoItem.id == todo_id, models.ToDoItem.owner_id == current_user.id).first()
+def delete_todo(id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    db_todo = db.query(models.ToDoItem).filter(models.ToDoItem.id == id, models.ToDoItem.owner_id == current_user.id).first()
 
     if not db_todo:
         raise HTTPException(status_code=404, detail="Todo not found")

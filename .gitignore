@@ -16,7 +16,14 @@ build/
 .env
 .env.local
 
+# DB data
 .idea/
 **/ .idea/
 backend/todo.db
 *.db
+
+# Code coverage reports
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
