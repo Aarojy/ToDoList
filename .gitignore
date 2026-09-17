@@ -15,6 +15,7 @@ build/
 # Environment variables
 .env
 .env.local
+k8s/secrets.yaml
 
 # DB data
 .idea/
